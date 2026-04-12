@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700;800&family=Fira+Code:wght@400;500;600;700&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -6,37 +6,37 @@
 
 @layer base {
   :root {
-    --background: 0 0% 5%;
-    --foreground: 0 0% 95%;
+    --background: 0 0% 4%;
+    --foreground: 0 0% 94%;
 
-    --card: 0 0% 8%;
-    --card-foreground: 0 0% 95%;
+    --card: 0 0% 6%;
+    --card-foreground: 0 0% 94%;
 
-    --popover: 0 0% 8%;
-    --popover-foreground: 0 0% 95%;
+    --popover: 0 0% 6%;
+    --popover-foreground: 0 0% 94%;
 
-    --primary: 0 72% 45%;
+    --primary: 0 100% 40%;
     --primary-foreground: 0 0% 100%;
 
-    --secondary: 0 0% 12%;
+    --primary-bright: 0 100% 50%;
+
+    --secondary: 0 0% 10%;
     --secondary-foreground: 0 0% 85%;
 
-    --muted: 0 0% 14%;
-    --muted-foreground: 0 0% 55%;
+    --muted: 0 0% 12%;
+    --muted-foreground: 0 0% 50%;
 
-    --accent: 0 72% 45%;
+    --accent: 0 100% 40%;
     --accent-foreground: 0 0% 100%;
 
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 98%;
 
-    --border: 0 0% 15%;
-    --input: 0 0% 15%;
-    --ring: 0 72% 45%;
+    --border: 0 0% 12%;
+    --input: 0 0% 12%;
+    --ring: 0 100% 40%;
 
     --radius: 0.5rem;
-
-    --hero-grid: 0 72% 45%;
   }
 }
 
@@ -46,26 +46,50 @@
   }
 
   body {
-    @apply bg-background text-foreground font-sans antialiased;
+    @apply bg-background text-foreground font-mono antialiased;
+    scroll-behavior: smooth;
   }
 
   h1, h2, h3, h4, h5, h6 {
-    @apply font-heading tracking-tight;
+    @apply font-mono tracking-tight;
   }
 }
 
-/* Animated grid background */
+/* Scanline overlay */
+.scanlines {
+  pointer-events: none;
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 2px,
+    rgba(0, 0, 0, 0.08) 2px,
+    rgba(0, 0, 0, 0.08) 4px
+  );
+  z-index: 2;
+}
+
+/* Global background grid texture */
+.bg-grid-texture {
+  background-image:
+    linear-gradient(hsl(0 100% 40% / 0.04) 1px, transparent 1px),
+    linear-gradient(90deg, hsl(0 100% 40% / 0.04) 1px, transparent 1px);
+  background-size: 60px 60px;
+}
+
+/* Animated grid background for hero */
 @keyframes grid-pulse {
   0%, 100% { opacity: 0.03; }
-  50% { opacity: 0.07; }
+  50% { opacity: 0.08; }
 }
 
 .hero-grid {
   background-image:
-    linear-gradient(hsl(var(--hero-grid) / 0.08) 1px, transparent 1px),
-    linear-gradient(90deg, hsl(var(--hero-grid) / 0.08) 1px, transparent 1px);
+    linear-gradient(hsl(0 100% 40% / 0.1) 1px, transparent 1px),
+    linear-gradient(90deg, hsl(0 100% 40% / 0.1) 1px, transparent 1px);
   background-size: 40px 40px;
-  animation: grid-pulse 6s ease-in-out infinite;
+  animation: grid-pulse 4s ease-in-out infinite;
 }
 
 /* Code block styling */
@@ -74,7 +98,100 @@
   color: hsl(var(--primary));
 }
 
-/* Subtle glow */
+/* Red glow effects */
 .glow-red {
-  box-shadow: 0 0 40px -10px hsl(var(--primary) / 0.3);
+  box-shadow: 0 0 60px -10px hsl(0 100% 40% / 0.5), 0 0 120px -20px hsl(0 100% 50% / 0.2);
+}
+
+.glow-red-sm {
+  box-shadow: 0 0 30px -5px hsl(0 100% 40% / 0.4);
+}
+
+.glow-red-text {
+  text-shadow: 0 0 40px hsl(0 100% 50% / 0.6), 0 0 80px hsl(0 100% 50% / 0.3);
+}
+
+/* Pulse glow animation */
+@keyframes pulse-glow {
+  0%, 100% { box-shadow: 0 0 40px -10px hsl(0 100% 40% / 0.4), 0 0 80px -20px hsl(0 100% 50% / 0.15); }
+  50% { box-shadow: 0 0 60px -5px hsl(0 100% 40% / 0.6), 0 0 120px -10px hsl(0 100% 50% / 0.3); }
+}
+
+.pulse-glow {
+  animation: pulse-glow 2.5s ease-in-out infinite;
+}
+
+/* Matrix rain animation */
+@keyframes matrix-fall {
+  0% { transform: translateY(-100%); opacity: 0; }
+  10% { opacity: 1; }
+  90% { opacity: 1; }
+  100% { transform: translateY(100vh); opacity: 0; }
+}
+
+/* Flow animation for pipeline arrows */
+@keyframes flow-right {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+.flow-line {
+  background: linear-gradient(90deg, transparent 0%, hsl(0 100% 40% / 0.6) 50%, transparent 100%);
+  background-size: 200% 100%;
+  animation: flow-right 2s linear infinite;
+}
+
+/* Step glow animation */
+@keyframes step-glow {
+  0%, 100% { border-color: hsl(0 0% 12%); box-shadow: none; }
+  50% { border-color: hsl(0 100% 40% / 0.6); box-shadow: 0 0 20px -5px hsl(0 100% 40% / 0.4); }
+}
+
+/* Fade in on scroll */
+@keyframes fade-up {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.animate-fade-up {
+  animation: fade-up 0.6s ease-out forwards;
+}
+
+/* Stagger delays */
+.delay-100 { animation-delay: 100ms; }
+.delay-200 { animation-delay: 200ms; }
+.delay-300 { animation-delay: 300ms; }
+.delay-400 { animation-delay: 400ms; }
+.delay-500 { animation-delay: 500ms; }
+
+/* Terminal cursor blink */
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+.terminal-cursor {
+  display: inline-block;
+  width: 8px;
+  height: 18px;
+  background: hsl(0 100% 40%);
+  animation: blink 1s step-end infinite;
+  vertical-align: text-bottom;
+  margin-left: 2px;
+}
+
+/* Card hover glow */
+.card-glow {
+  transition: all 0.2s ease;
+}
+
+.card-glow:hover {
+  border-color: hsl(0 100% 40% / 0.5);
+  box-shadow: 0 0 30px -10px hsl(0 100% 40% / 0.3);
+  transform: translateY(-2px);
+}
+
+/* Red gradient for download section */
+.bg-red-gradient {
+  background: linear-gradient(180deg, hsl(0 0% 4%) 0%, hsl(0 100% 8%) 50%, hsl(0 0% 4%) 100%);
 }
