@@ -15,8 +15,8 @@ export default {
     extend: {
       fontFamily: {
         sans: ["Inter", "system-ui", "sans-serif"],
-        heading: ["Inter", "system-ui", "sans-serif"],
-        mono: ["JetBrains Mono", "monospace"],
+        mono: ["JetBrains Mono", "Fira Code", "monospace"],
+        heading: ["JetBrains Mono", "Fira Code", "monospace"],
       },
       colors: {
         border: "hsl(var(--border))",
@@ -27,6 +27,7 @@ export default {
         primary: {
           DEFAULT: "hsl(var(--primary))",
           foreground: "hsl(var(--primary-foreground))",
+          bright: "hsl(var(--primary-bright))",
         },
         secondary: {
           DEFAULT: "hsl(var(--secondary))",
