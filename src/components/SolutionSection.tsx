@@ -1,107 +1,110 @@
-import { Cloud, ShieldCheck, ArrowRightLeft, Zap, FileText } from "lucide-react";
+import { Lock, HardDrive, Network, FileCheck, Shield } from "lucide-react";
 import ScrollReveal from "./ScrollReveal";
-import { useEffect, useRef, useState } from "react";
 
-const steps = [
-  { icon: Cloud, label: "Cloud Infra" },
-  { icon: ShieldCheck, label: "Security Audit" },
-  { icon: ArrowRightLeft, label: "Vuln-Chaos Bridge" },
-  { icon: Zap, label: "Chaos Experiments" },
-  { icon: FileText, label: "Reports" },
+const audits = [
+  {
+    icon: Lock,
+    title: "IAM Security Audits",
+    desc: "Detect overly permissive policies, unused credentials, and privilege escalation risks.",
+  },
+  {
+    icon: HardDrive,
+    title: "S3 Bucket Analysis",
+    desc: "Identify public buckets, encryption gaps, and access control misconfigurations.",
+  },
+  {
+    icon: Network,
+    title: "Network Segmentation",
+    desc: "Analyze VPC configurations, security groups, and network access patterns.",
+  },
+  {
+    icon: FileCheck,
+    title: "Compliance Reports",
+    desc: "Automated VAPT reports with severity ratings and remediation recommendations.",
+  },
 ];
 
-const descriptions = [
-  "Lucifer scans your AWS, GCP, and Azure infrastructure against YAML-based rules mapped to CIS, NIST, and MITRE ATT&CK benchmarks.",
-  "Every finding is a trigger. Lucifer prompts you to simulate the exact failure that vulnerability enables — agent-based on compute, SDK-based on storage.",
-  "Three reports. VAPT, Resilience, and Combined — linking every vulnerability to the failure it caused and the time it took to recover.",
-];
-
-const SolutionSection = () => {
-  const sectionRef = useRef<HTMLDivElement>(null);
-  const [activeStep, setActiveStep] = useState(-1);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          // Animate steps sequentially
-          steps.forEach((_, i) => {
-            setTimeout(() => setActiveStep(i), i * 400);
-          });
-          observer.unobserve(entry.target);
-        }
-      },
-      { threshold: 0.3 }
-    );
-
-    if (sectionRef.current) observer.observe(sectionRef.current);
-    return () => observer.disconnect();
-  }, []);
-
+const VAPTScannerSection = () => {
   return (
-    <section ref={sectionRef} className="relative py-28 px-6">
-      <div className="container mx-auto max-w-5xl">
-        <ScrollReveal>
-          <h2 className="text-3xl md:text-5xl font-extrabold text-foreground mb-20 text-center tracking-tight">
-            How Lucifer Works
-          </h2>
-        </ScrollReveal>
+    <section
+      id="vapt-scanner"
+      className="relative py-24 px-6 bg-[#030303] border-t border-border"
+    >
+      <div className="container mx-auto max-w-6xl">
+        <div className="flex flex-col items-center text-center mb-16">
+          <div className="inline-flex items-center gap-2 border border-primary px-3 py-1 bg-primary/5 rounded-none mb-6">
+            <Shield className="w-3.5 h-3.5 text-primary" />
+            <span className="text-primary text-xs font-mono tracking-wide">
+              The VAPT Scanner
+            </span>
+          </div>
 
-        {/* Flow diagram */}
-        <div className="flex flex-col md:flex-row items-center justify-between gap-2 mb-20">
-          {steps.map((step, i) => (
-            <div key={i} className="flex items-center gap-2">
-              <div className="flex flex-col items-center gap-3 min-w-[110px]">
-                <div
-                  className="w-16 h-16 rounded-lg bg-card border flex items-center justify-center transition-all duration-500"
-                  style={{
-                    borderColor: i <= activeStep ? "hsl(0 100% 40% / 0.6)" : "hsl(0 0% 12%)",
-                    boxShadow: i <= activeStep ? "0 0 25px -5px hsl(0 100% 40% / 0.4)" : "none",
-                  }}
-                >
-                  <step.icon
-                    className="w-7 h-7 transition-colors duration-500"
-                    style={{
-                      color: i <= activeStep ? "hsl(0 100% 50%)" : "hsl(0 0% 30%)",
-                    }}
-                  />
-                </div>
-                <span
-                  className="text-xs text-center font-medium transition-colors duration-500"
-                  style={{
-                    color: i <= activeStep ? "hsl(0 0% 85%)" : "hsl(0 0% 35%)",
-                  }}
-                >
-                  {step.label}
-                </span>
+          <h2 className="text-4xl md:text-5xl font-extrabold text-foreground mb-4 tracking-tighter">
+            Automated AWS Security
+            <br />
+            Auditing
+          </h2>
+          <p className="text-muted-foreground/80 max-w-3xl text-sm md:text-base font-mono">
+            Comprehensive vulnerability assessment and penetration testing for
+            your AWS infrastructure. Automated rule-based audits across IAM, S3,
+            networking, and more.
+          </p>
+        </div>
+
+        <div className="grid md:grid-cols-4 gap-6 mb-12">
+          {audits.map((item, i) => (
+            <div key={i} className="flex flex-col h-full bg-transparent p-2">
+              <div className="mb-4 bg-transparent border border-primary w-10 h-10 flex items-center justify-center">
+                <item.icon className="w-4 h-4 text-primary" />
               </div>
-              {i < steps.length - 1 && (
-                <div className="hidden md:block w-12 h-[2px] relative overflow-hidden rounded-full">
-                  <div
-                    className="absolute inset-0 bg-border transition-all duration-700"
-                  />
-                  {i < activeStep && (
-                    <div className="absolute inset-0 flow-line h-full" />
-                  )}
-                </div>
-              )}
+              <h3 className="text-sm font-bold text-foreground mb-2">
+                {item.title}
+              </h3>
+              <p className="text-xs text-muted-foreground leading-relaxed font-mono">
+                {item.desc}
+              </p>
             </div>
           ))}
         </div>
 
-        {/* Descriptions */}
-        <div className="grid md:grid-cols-3 gap-10">
-          {descriptions.map((text, i) => (
-            <ScrollReveal key={i} delay={i * 150}>
-              <p className="text-sm text-muted-foreground leading-relaxed border-l-2 border-primary/30 pl-4">
-                {text}
-              </p>
-            </ScrollReveal>
-          ))}
+        <div className="w-full border border-border bg-[#0a0a0a] min-h-[400px] relative overflow-hidden flex items-center justify-end p-8">
+          <div className="flex gap-4 relative z-20 self-start mt-8">
+            <div className="bg-[#111] border border-border p-4 text-center w-24">
+              <div className="text-2xl text-[#ff5555] font-bold">12</div>
+              <div className="text-[10px] text-muted-foreground font-mono mt-1 uppercase tracking-widest">
+                Critical
+              </div>
+            </div>
+            <div className="bg-[#111] border border-border p-4 text-center w-24">
+              <div className="text-2xl text-[#ffaa00] font-bold">28</div>
+              <div className="text-[10px] text-muted-foreground font-mono mt-1 uppercase tracking-widest">
+                High
+              </div>
+            </div>
+            <div className="bg-[#111] border border-border p-4 text-center w-24">
+              <div className="text-2xl text-[#facc15] font-bold">45</div>
+              <div className="text-[10px] text-muted-foreground font-mono mt-1 uppercase tracking-widest">
+                Medium
+              </div>
+            </div>
+            <div className="bg-[#111] border border-border p-4 text-center w-24">
+              <div className="text-2xl text-primary font-bold">67</div>
+              <div className="text-[10px] text-muted-foreground font-mono mt-1 uppercase tracking-widest">
+                Low
+              </div>
+            </div>
+          </div>
+
+          <img
+            alt="VAPT Scanner Interface"
+            className="absolute inset-0 w-full h-full object-cover opacity-80 z-0 pointer-events-none"
+            src="https://images.unsplash.com/photo-1583695477819-357b45d15825?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NDk1Nzh8MHwxfHNlYXJjaHwzfHxjeWJlcnNlY3VyaXR5JTIwdnVsbmVyYWJpbGl0eSUyMHNjYW5uaW5nfGVufDB8fHx8MTc3NjAxMjIxOHww&ixlib=rb-4.1.0&q=85"
+          />
+          <div className="absolute inset-0  z-10 pointer-events-none"></div>
         </div>
       </div>
     </section>
   );
 };
 
-export default SolutionSection;
+export default VAPTScannerSection;

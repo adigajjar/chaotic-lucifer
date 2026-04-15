@@ -1,40 +1,123 @@
-import { Globe, FileCode, ArrowRightLeft, Terminal, Database, BarChart3 } from "lucide-react";
+import { Zap } from "lucide-react";
 import ScrollReveal from "./ScrollReveal";
 
-const features = [
-  { icon: Globe, title: "Cloud Agnostic", desc: "Supports AWS, GCP, and Azure through a unified connector" },
-  { icon: FileCode, title: "YAML Rule Engine", desc: "Write your own rules mapped to CIS, NIST, and MITRE ATT&CK" },
-  { icon: ArrowRightLeft, title: "Vuln-Chaos Bridge", desc: "Security findings automatically map to chaos experiments" },
-  { icon: Terminal, title: "Agent-Based Chaos", desc: "CLI-driven fault injection on compute instances" },
-  { icon: Database, title: "SDK-Based Chaos", desc: "Direct SDK experiments on object storage" },
-  { icon: BarChart3, title: "Unified Reporting", desc: "VAPT, Resilience, and Combined reports from one data layer" },
+const steps = [
+  {
+    num: "01",
+    title: "Audit Finding",
+    desc: "VAPT scanner identifies a network segmentation gap in VPC configuration.",
+    status: "Critical Vulnerability",
+    statusColor: "text-[#ff5555] border-[#ff5555]",
+  },
+  {
+    num: "02",
+    title: "Auto-Trigger",
+    desc: "Vuln-Chaos engine automatically creates a chaos experiment based on the finding.",
+    status: "Experiment Created",
+    statusColor: "text-[#a585e8] border-[#a585e8]",
+  },
+  {
+    num: "03",
+    title: "Chaos Execution",
+    desc: "Simulates lateral movement attempt to test system resilience under attack.",
+    status: "Running",
+    statusColor: "text-primary border-primary",
+  },
+  {
+    num: "04",
+    title: "Resilience Report",
+    desc: "Comprehensive analysis of system behavior during simulated attack scenario.",
+    status: "Completed",
+    statusColor: "text-green-500 border-green-500",
+  },
 ];
 
-const FeaturesSection = () => {
+const vectors = [
+  "Lateral Movement Simulation",
+  "Privilege Escalation Tests",
+  "Data Exfiltration Scenarios",
+  "DDoS Resilience Testing",
+  "Credential Compromise Simulation",
+  "Service Disruption Tests",
+];
+
+const VulnChaosSection = () => {
   return (
-    <section className="relative py-28 px-6">
-      <div className="container mx-auto max-w-5xl">
-        <ScrollReveal>
-          <h2 className="text-3xl md:text-5xl font-extrabold text-foreground mb-16 text-center tracking-tight">
-            What Lucifer Does
+    <section
+      id="vuln-chaos"
+      className="relative py-24 px-6 bg-background border-t border-border"
+    >
+      <div className="container mx-auto max-w-6xl">
+        <div className="flex flex-col items-center text-center mb-16">
+          <div className="inline-flex items-center gap-2 border border-[#ff5555] px-3 py-1 bg-[#ff5555]/5 rounded-none mb-6">
+            <Zap className="w-3.5 h-3.5 text-[#ff5555]" />
+            <span className="text-[#ff5555] text-xs font-mono tracking-wide">
+              Vuln-Chaos Pipeline
+            </span>
+          </div>
+
+          <h2 className="text-4xl md:text-5xl font-extrabold text-foreground mb-4 tracking-tighter">
+            Security Attack &rarr; Chaos
+            <br />
+            Simulation
           </h2>
-        </ScrollReveal>
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
-          {features.map((f, i) => (
-            <ScrollReveal key={i} delay={i * 80}>
-              <div className="group relative bg-card/60 backdrop-blur-sm border border-border rounded-lg p-7 card-glow overflow-hidden">
-                {/* Hover gradient overlay */}
-                <div className="absolute inset-0 bg-gradient-to-br from-primary/0 to-primary/0 group-hover:from-primary/[0.04] group-hover:to-primary/[0.08] transition-all duration-300 rounded-lg" />
-                <f.icon className="w-5 h-5 text-primary mb-4 relative z-10 group-hover:scale-110 transition-transform duration-200" />
-                <h3 className="text-foreground font-bold mb-2 text-sm relative z-10">{f.title}</h3>
-                <p className="text-muted-foreground text-sm leading-relaxed relative z-10">{f.desc}</p>
+          <p className="text-muted-foreground/80 max-w-2xl text-sm md:text-base font-mono">
+            Revolutionize workflow that automatically converts security
+            <br />
+            vulnerabilities into chaos experiments. Test your system's
+            resilience
+            <br />
+            against real attack scenarios.
+          </p>
+        </div>
+
+        <div className="flex flex-col md:flex-row gap-0 mb-8 justify-between items-stretch">
+          {steps.map((step, i) => (
+            <div key={i} className="flex-1 flex items-stretch">
+              <div className="flex-1 bg-card border border-border p-6 flex flex-col h-full">
+                <div className="text-primary font-mono text-xs mb-4">
+                  {step.num}
+                </div>
+                <h3 className="text-sm font-bold text-foreground mb-2">
+                  {step.title}
+                </h3>
+                <p className="text-xs text-muted-foreground leading-relaxed font-mono mb-6 flex-grow">
+                  {step.desc}
+                </p>
+                <div
+                  className={`mt-auto self-start border px-2 py-1 text-[10px] uppercase tracking-wider font-mono ${step.statusColor}`}
+                >
+                  {step.status}
+                </div>
               </div>
-            </ScrollReveal>
+
+              {i < steps.length - 1 && (
+                <div className="hidden md:flex items-center justify-center w-12 shrink-0">
+                  <Zap className="w-4 h-4 text-[#ff5555]" />
+                </div>
+              )}
+            </div>
           ))}
+        </div>
+
+        <div className="border border-border bg-card p-6">
+          <div className="text-center font-bold text-foreground mb-6">
+            Supported Attack Vectors
+          </div>
+          <div className="grid md:grid-cols-3 gap-3">
+            {vectors.map((v, i) => (
+              <div
+                key={i}
+                className="border border-primary px-4 py-3 text-center text-xs text-primary font-mono hover:bg-primary/5 transition-colors cursor-default"
+              >
+                {v}
+              </div>
+            ))}
+          </div>
         </div>
       </div>
     </section>
   );
 };
 
-export default FeaturesSection;
+export default VulnChaosSection;

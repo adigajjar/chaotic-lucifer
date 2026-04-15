@@ -6,19 +6,19 @@
 
 @layer base {
   :root {
-    --background: 0 0% 4%;
+    --background: 0 0% 0%;
     --foreground: 0 0% 94%;
 
-    --card: 0 0% 6%;
+    --card: 0 0% 8%;
     --card-foreground: 0 0% 94%;
 
     --popover: 0 0% 6%;
     --popover-foreground: 0 0% 94%;
 
-    --primary: 0 100% 40%;
-    --primary-foreground: 0 0% 100%;
+    --primary: 168 100% 50%;
+    --primary-foreground: 0 0% 0%;
 
-    --primary-bright: 0 100% 50%;
+    --primary-bright: 168 100% 60%;
 
     --secondary: 0 0% 10%;
     --secondary-foreground: 0 0% 85%;
@@ -26,17 +26,17 @@
     --muted: 0 0% 12%;
     --muted-foreground: 0 0% 50%;
 
-    --accent: 0 100% 40%;
-    --accent-foreground: 0 0% 100%;
+    --accent: 168 100% 50%;
+    --accent-foreground: 0 0% 0%;
 
     --destructive: 0 84% 60%;
     --destructive-foreground: 0 0% 98%;
 
-    --border: 0 0% 12%;
-    --input: 0 0% 12%;
-    --ring: 0 100% 40%;
+    --border: 0 0% 15%;
+    --input: 0 0% 15%;
+    --ring: 168 100% 50%;
 
-    --radius: 0.5rem;
+    --radius: 0;
   }
 }
 
@@ -64,8 +64,8 @@
     0deg,
     transparent,
     transparent 2px,
-    rgba(0, 0, 0, 0.08) 2px,
-    rgba(0, 0, 0, 0.08) 4px
+    rgba(0, 0, 0, 0.15) 2px,
+    rgba(0, 0, 0, 0.15) 4px
   );
   z-index: 2;
 }
@@ -73,8 +73,8 @@
 /* Global background grid texture */
 .bg-grid-texture {
   background-image:
-    linear-gradient(hsl(0 100% 40% / 0.04) 1px, transparent 1px),
-    linear-gradient(90deg, hsl(0 100% 40% / 0.04) 1px, transparent 1px);
+    linear-gradient(hsl(168 100% 50% / 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, hsl(168 100% 50% / 0.05) 1px, transparent 1px);
   background-size: 60px 60px;
 }
 
@@ -86,35 +86,35 @@
 
 .hero-grid {
   background-image:
-    linear-gradient(hsl(0 100% 40% / 0.1) 1px, transparent 1px),
-    linear-gradient(90deg, hsl(0 100% 40% / 0.1) 1px, transparent 1px);
+    linear-gradient(hsl(168 100% 50% / 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, hsl(168 100% 50% / 0.05) 1px, transparent 1px);
   background-size: 40px 40px;
   animation: grid-pulse 4s ease-in-out infinite;
 }
 
 /* Code block styling */
 .code-block {
-  @apply bg-muted border border-border rounded-lg px-6 py-4 font-mono text-sm;
+  @apply bg-muted border border-border rounded-none px-6 py-4 font-mono text-sm;
   color: hsl(var(--primary));
 }
 
-/* Red glow effects */
-.glow-red {
-  box-shadow: 0 0 60px -10px hsl(0 100% 40% / 0.5), 0 0 120px -20px hsl(0 100% 50% / 0.2);
+/* glow effects */
+.glow-cyan {
+  box-shadow: 0 0 60px -10px hsl(168 100% 50% / 0.2), 0 0 120px -20px hsl(168 100% 60% / 0.1);
 }
 
-.glow-red-sm {
-  box-shadow: 0 0 30px -5px hsl(0 100% 40% / 0.4);
+.glow-cyan-sm {
+  box-shadow: 0 0 30px -5px hsl(168 100% 50% / 0.2);
 }
 
-.glow-red-text {
-  text-shadow: 0 0 40px hsl(0 100% 50% / 0.6), 0 0 80px hsl(0 100% 50% / 0.3);
+.glow-cyan-text {
+  text-shadow: 0 0 40px hsl(168 100% 60% / 0.6), 0 0 80px hsl(168 100% 60% / 0.3);
 }
 
 /* Pulse glow animation */
 @keyframes pulse-glow {
-  0%, 100% { box-shadow: 0 0 40px -10px hsl(0 100% 40% / 0.4), 0 0 80px -20px hsl(0 100% 50% / 0.15); }
-  50% { box-shadow: 0 0 60px -5px hsl(0 100% 40% / 0.6), 0 0 120px -10px hsl(0 100% 50% / 0.3); }
+  0%, 100% { box-shadow: 0 0 40px -10px hsl(168 100% 50% / 0.2), 0 0 80px -20px hsl(168 100% 60% / 0.1); }
+  50% { box-shadow: 0 0 60px -5px hsl(168 100% 50% / 0.4), 0 0 120px -10px hsl(168 100% 60% / 0.2); }
 }
 
 .pulse-glow {
@@ -136,7 +136,7 @@
 }
 
 .flow-line {
-  background: linear-gradient(90deg, transparent 0%, hsl(0 100% 40% / 0.6) 50%, transparent 100%);
+  background: linear-gradient(90deg, transparent 0%, hsl(168 100% 50% / 0.6) 50%, transparent 100%);
   background-size: 200% 100%;
   animation: flow-right 2s linear infinite;
 }
@@ -144,7 +144,7 @@
 /* Step glow animation */
 @keyframes step-glow {
   0%, 100% { border-color: hsl(0 0% 12%); box-shadow: none; }
-  50% { border-color: hsl(0 100% 40% / 0.6); box-shadow: 0 0 20px -5px hsl(0 100% 40% / 0.4); }
+  50% { border-color: hsl(168 100% 50% / 0.6); box-shadow: 0 0 20px -5px hsl(168 100% 50% / 0.4); }
 }
 
 /* Fade in on scroll */
@@ -174,7 +174,7 @@
   display: inline-block;
   width: 8px;
   height: 18px;
-  background: hsl(0 100% 40%);
+  background: hsl(168 100% 50%);
   animation: blink 1s step-end infinite;
   vertical-align: text-bottom;
   margin-left: 2px;
@@ -186,12 +186,12 @@
 }
 
 .card-glow:hover {
-  border-color: hsl(0 100% 40% / 0.5);
-  box-shadow: 0 0 30px -10px hsl(0 100% 40% / 0.3);
+  border-color: hsl(168 100% 50% / 0.5);
+  box-shadow: 0 0 20px -5px hsl(168 100% 50% / 0.3);
   transform: translateY(-2px);
 }
 
-/* Red gradient for download section */
-.bg-red-gradient {
-  background: linear-gradient(180deg, hsl(0 0% 4%) 0%, hsl(0 100% 8%) 50%, hsl(0 0% 4%) 100%);
+/* Gradient for download section */
+.bg-cyan-gradient {
+  background: linear-gradient(180deg, hsl(0 0% 0%) 0%, hsl(168 100% 4% / 0.3) 50%, hsl(0 0% 0%) 100%);
 }
