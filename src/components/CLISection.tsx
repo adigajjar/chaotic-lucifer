@@ -55,7 +55,7 @@ const CLISection = () => {
             <div className="ml-4 text-foreground mb-6">lucifer [command]</div>
 
             <div className="text-primary mb-2">Available Commands:</div>
-            <div className="grid grid-cols-[160px_1fr] md:grid-cols-[200px_1fr] gap-x-4 gap-y-2 ml-4 text-foreground mb-6">
+            <div className="grid grid-cols-1 sm:grid-cols-[160px_1fr] md:grid-cols-[200px_1fr] gap-x-4 gap-y-3 sm:gap-y-2 ml-4 text-foreground mb-6">
               <div className="text-primary">audit</div>
               <div className="text-muted-foreground">
                 Audit commands for scanning and attacking infrastructure

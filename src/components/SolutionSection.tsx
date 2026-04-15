@@ -67,8 +67,8 @@ const VAPTScannerSection = () => {
           ))}
         </div>
 
-        <div className="w-full border border-border bg-[#0a0a0a] min-h-[400px] relative overflow-hidden flex items-center justify-end p-8">
-          <div className="flex gap-4 relative z-20 self-start mt-8">
+        <div className="w-full border border-border bg-[#0a0a0a] min-h-[400px] relative overflow-hidden flex items-center justify-end p-4 md:p-8">
+          <div className="flex flex-wrap gap-2 md:gap-4 relative z-20 self-start mt-4 md:mt-8">
             <div className="bg-[#111] border border-border p-4 text-center w-24">
               <div className="text-2xl text-[#ff5555] font-bold">12</div>
               <div className="text-[10px] text-muted-foreground font-mono mt-1 uppercase tracking-widest">

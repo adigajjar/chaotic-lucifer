@@ -58,7 +58,7 @@ const HeroSection = () => {
             </div>
 
             {/* Stats row */}
-            <div className="flex gap-x-12 border-t border-border pt-8">
+            <div className="flex flex-wrap gap-6 sm:gap-12 border-t border-border pt-8">
               <div>
                 <div className="text-3xl font-bold text-primary mb-2">
                   99.9%
@@ -67,14 +67,14 @@ const HeroSection = () => {
                   Uptime Resilience
                 </div>
               </div>
-              <div className="w-px h-12 bg-border"></div>
+              <div className="hidden sm:block w-px h-12 bg-border"></div>
               <div>
                 <div className="text-3xl font-bold text-primary mb-2">20+</div>
                 <div className="text-xs text-muted-foreground font-mono">
                   Security Audits
                 </div>
               </div>
-              <div className="w-px h-12 bg-border"></div>
+              <div className="hidden sm:block w-px h-12 bg-border"></div>
               <div>
                 <div className="text-3xl font-bold text-primary mb-2">24/7</div>
                 <div className="text-xs text-muted-foreground font-mono">
