@@ -23,6 +23,7 @@ const Navbar = () => {
           <a href="/#vuln-chaos" className="hover:text-foreground transition-colors">Vuln-Chaos</a>
           <a href="/#architecture" className="hover:text-foreground transition-colors">Architecture</a>
           <a href="/pricing" className="hover:text-foreground transition-colors">Pricing</a>
+          <Link to="/contact" className="hover:text-foreground transition-colors">Contact</Link>
           <a 
             href="/#contact" 
             className="px-6 py-2.5 bg-primary text-primary-foreground font-bold hover:bg-primary-bright transition-colors"
@@ -48,6 +49,7 @@ const Navbar = () => {
           <a href="/#vuln-chaos" className="py-3 text-sm font-medium text-muted-foreground hover:text-foreground transition-colors border-b border-border/50" onClick={toggleMobileMenu}>Vuln-Chaos</a>
           <a href="/#architecture" className="py-3 text-sm font-medium text-muted-foreground hover:text-foreground transition-colors border-b border-border/50" onClick={toggleMobileMenu}>Architecture</a>
           <a href="/pricing" className="py-3 text-sm font-medium text-muted-foreground hover:text-foreground transition-colors border-b border-border/50" onClick={toggleMobileMenu}>Pricing</a>
+          <Link to="/contact" className="py-3 text-sm font-medium text-muted-foreground hover:text-foreground transition-colors border-b border-border/50" onClick={toggleMobileMenu}>Contact</Link>
           <a 
             href="/#contact" 
             className="mt-4 px-6 py-3 bg-primary text-primary-foreground font-bold hover:bg-primary-bright transition-colors text-center"
